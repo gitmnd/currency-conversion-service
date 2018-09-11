@@ -80,6 +80,11 @@ public class CurrencyConversionController {
 
     /*
     * Hystrix explanation
+    * For the Circuit Breaker to work, Hystix will scan @Component or @Service annotated classes for @HystixCommand annotated methods,
+     * implement a proxy for it and monitor its calls.
+     *
+     * Spring Cloud Netflix Hystrix looks for any method annotated with the @HystrixCommand annotation,
+     * and wraps that method in a proxy connected to a circuit breaker so that Hystrix can monitor it
     * */
     @HystrixCommand(fallbackMethod = "faultToleranceHystrix")
     @RequestMapping(value="/strong-url")
